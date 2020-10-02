@@ -90,13 +90,20 @@ const _handleSubmit = async (e) => {
   const userChoice = document
     .getElementById("playerProposition")
     .value.toUpperCase();
-  check(userChoice);
-  myFormEvent.reset();
+  if (testIfWin.includes(userChoice)) {
+    alert("Already there !");
+  } else {
+    check(userChoice);
+    myFormEvent.reset();
+  }
 };
 
 function rand() {
   let rand = Math.floor(Math.random() * words.length);
-  word = words[rand].toUpperCase();
+  word = words[rand]
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
 
   for (i = 0; i < word.length; i++) {
     let newLetter = document.createElement("div");
@@ -116,6 +123,7 @@ function check(letter) {
       let gg = document.getElementById(letter + i);
       gg.style.textIndent = "0px";
       testIfWin.push(letter);
+      console.log(testIfWin);
     }
   }
   win == true ? winTest() : lose(count, letter);
@@ -127,8 +135,6 @@ function lose(x, letter) {
     alert("You lose");
     let input = document.getElementById("playerProposition");
     input.setAttribute("disabled", true);
-    count = 0;
-    testIfWin = 0;
   } else {
     let wrongLetter = document.createElement("div");
     wrongLetter.classList.add("text-center", "text-danger");
