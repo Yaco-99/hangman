@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script defer src="assets/js/script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 p-0"><h1 class="text-center">Pendu</h1></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-lg-8 offset-2 d-flex justify-content-around"
+          id="computerWord"
+        ></div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 border border-dark" id="wrongLetter"></div>
+        <div class="col-lg-8 penduImg"></div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 d-flex justify-content-between">
+          <form id="myformEvent" method="post">
+            <label for="proposition">Try it</label>
+            <input
+              type="text"
+              id="playerProposition"
+              name="proposition"
+              autocomplete="off"
+              maxlength="1"
+              required
+            />
+            <input
+              type="submit"
+              style="position: absolute; left: -9999px; width: 1px; height: 1px"
+              tabindex="-1"
+            />
+          </form>
+          <button class="btn btn-primary offset-1" onclick="restart()">
+            Restart
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="assets/node_modules/jquery/dist/jquery.slim.js"></script>
+    <script src="assets/node_modules/@popperjs/core/dist/umd/popper.js"></script>
+    <script src="assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  </body>
+</html>

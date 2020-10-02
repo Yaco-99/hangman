@@ -1,0 +1,14 @@
+@import "variable_override";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  max-width: 100%;
+}
+h2 {
+  text-indent: -10000px;
+  height: 30px;
+  width: 30px;
+}
+.penduImg {
+  min-height: 60vh;
+}
