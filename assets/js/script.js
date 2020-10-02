@@ -80,7 +80,7 @@ const words = [
 const myFormEvent = document.getElementById("myformEvent");
 let i = 0;
 let count = 0;
-let testIfWin = 0;
+let testIfWin = [];
 let word;
 
 rand();
@@ -115,7 +115,7 @@ function check(letter) {
       win = true;
       let gg = document.getElementById(letter + i);
       gg.style.textIndent = "0px";
-      testIfWin++;
+      testIfWin.push(letter);
     }
   }
   win == true ? winTest() : lose(count, letter);
@@ -138,7 +138,7 @@ function lose(x, letter) {
   }
 }
 function winTest() {
-  if (testIfWin == word.length) {
+  if (testIfWin.length == word.length) {
     alert("You win !");
     let input = document.getElementById("playerProposition");
     input.setAttribute("disabled", true);
