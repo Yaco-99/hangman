@@ -12,3 +12,17 @@ h2 {
 .penduImg {
   min-height: 60vh;
 }
+.winOrLose {
+  height: 100%;
+  width: 100%;
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
