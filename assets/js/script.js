@@ -1,8 +1,9 @@
 const myFormEvent = document.getElementById("myformEvent");
-let i = 0;
-let count = 0;
-let testIfWin = [];
-let word;
+let i = 0,
+  count = 0,
+  testIfWin = [],
+  word,
+  wrongLetterArray = [];
 const draws = [
   "gallows",
   "head",
@@ -22,8 +23,8 @@ const _handleSubmit = async (e) => {
   const userChoice = document
     .getElementById("playerProposition")
     .value.toUpperCase();
-  if (testIfWin.includes(userChoice)) {
-    alert("Already there !");
+  if (testIfWin.includes(userChoice) || wrongLetterArray.includes(userChoice)) {
+    alert("Already picked !");
   } else {
     check(userChoice);
     myFormEvent.reset();
@@ -71,6 +72,7 @@ function lose(x, letter) {
     let input = document.getElementById("playerProposition");
     input.setAttribute("disabled", true);
   } else {
+    wrongLetterArray.push(letter);
     let wrongLetter = document.createElement("div");
     wrongLetter.classList.add("text-center", "text-danger");
     wrongLetter.innerHTML = `<p>${letter}</p>`;
