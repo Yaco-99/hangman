@@ -1,33 +1,36 @@
-const myFormEvent = document.getElementById("myformEvent");
+const myFormEvent = document.getElementById("myformEvent"),
+  playerProposition = document.getElementById("playerProposition"),
+  draws = [
+    "gallows",
+    "head",
+    "body",
+    "rightHarm",
+    "leftHarm",
+    "rightLeg",
+    "leftLeg",
+    "rightFoot",
+    "leftFoot",
+    "dead",
+  ];
+
 let i = 0,
   count = 0,
   testIfWin = [],
   word,
   wrongLetterArray = [];
-const draws = [
-  "gallows",
-  "head",
-  "body",
-  "rightHarm",
-  "leftHarm",
-  "rightLeg",
-  "leftLeg",
-  "rightFoot",
-  "leftFoot",
-  "dead",
-];
 
+console.log(word);
 rand();
 const _handleSubmit = async (e) => {
   e.preventDefault();
-  const userChoice = document
-    .getElementById("playerProposition")
-    .value.toUpperCase();
+  const userChoice = playerProposition.value.toUpperCase();
   if (testIfWin.includes(userChoice) || wrongLetterArray.includes(userChoice)) {
     alert("Already picked !");
+    return;
   } else {
     check(userChoice);
     myFormEvent.reset();
+    return;
   }
 };
 
@@ -65,12 +68,7 @@ function lose(x, letter) {
   let tryLeft = 10 - count;
   if (count == 10) {
     alert("You lose, the word was " + word);
-    let youLose = document.createElement("p");
-    youLose.classList.add("text-danger");
-    youLose.innerHTML = `YOU LOSE !`;
-    document.getElementById("winOrLose").appendChild(youLose);
-    let input = document.getElementById("playerProposition");
-    input.setAttribute("disabled", true);
+    winOrLose("danger", "LOSE");
   } else {
     wrongLetterArray.push(letter);
     let wrongLetter = document.createElement("div");
@@ -83,16 +81,18 @@ function lose(x, letter) {
 function winTest() {
   if (testIfWin.length == word.length) {
     alert("You win !");
-    let youWin = document.createElement("p");
-    youWin.classList.add("text-success");
-    youWin.innerHTML = `YOU WIN !`;
-    document.getElementById("winOrLose").appendChild(youWin);
-    let input = document.getElementById("playerProposition");
-    input.setAttribute("disabled", true);
-    count = 0;
-    testIfWin = 0;
+    winOrLose("success", "WIN");
   }
 }
+
+function winOrLose(color, winLose) {
+  let message = document.createElement("p");
+  message.classList.add(`text-${color}`);
+  message.innerHTML = `YOU ${winLose} !`;
+  document.getElementById("winOrLose").appendChild(message);
+  playerProposition.setAttribute("disabled", true);
+}
+
 function restart() {
   location.reload();
 }
